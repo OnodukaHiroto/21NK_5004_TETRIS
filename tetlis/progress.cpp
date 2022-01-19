@@ -1,32 +1,43 @@
-#include "game.h"
+#include "progress.h"
 
 
 //*****************************************************************************
 //  コンストラクタ
 //*****************************************************************************
-Game::Game()
+Progress::Progress() : scene_no_( kGame )
 {
-    board_.init();
 }
 
 
 //*****************************************************************************
 //  デストラクタ
 //*****************************************************************************
-Game::~Game()
+Progress::~Progress()
 {
+    // 念のため現在進行中のシーンを破棄
+    switch( scene_no_ )
+    {
+        case kTitle:
+            break;
+        case kGame:
+            game_.destroy();
+            break;
+        case kEnding:
+            break;
+    }
 }
 
 
 //*****************************************************************************
 //  初期化
 //*****************************************************************************
-bool Game::init()
+bool Progress::init()
 {
-    // クラス初期化
-    if( !mino_.init() ) return false;
-    if( !field_.init() ) return false;
-    if( !board_.init() ) return false;
+
+    // 最初に開始するシーン
+    scene_no_ = kGame;
+    if( !game_.init() ) return false;
+
 
     return true;
 }
@@ -35,10 +46,18 @@ bool Game::init()
 //*****************************************************************************
 //  更新
 //*****************************************************************************
-bool Game::update()
+bool Progress::update()
 {
-    mino_.update( &board_ ); // ミノクラス更新
-    board_.update();
+    switch( scene_no_ )
+    {
+        case kTitle:
+            break;
+        case kGame:
+            game_.update();
+            break;
+        case kEnding:
+            break;
+    }
 
     return true;
 }
@@ -47,21 +66,16 @@ bool Game::update()
 //*****************************************************************************
 //  描画
 //*****************************************************************************
-void Game::draw()
+void Progress::draw()
 {
-    field_.draw();
-    board_.draw();
-    mino_.draw();
-}
-
-
-
-//*****************************************************************************
-//  破棄
-//*****************************************************************************
-void Game::destroy()
-{
-    mino_.destroy();
-    board_.destroy();
-    field_.destroy();
+    switch( scene_no_ )
+    {
+        case kTitle:
+            break;
+        case kGame:
+            game_.draw();
+            break;
+        case kEnding:
+            break;
+    }
 }

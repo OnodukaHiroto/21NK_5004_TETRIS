@@ -31,7 +31,7 @@
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
-    <CharacterSet>Unicode</CharacterSet>
+    <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -86,13 +86,16 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
-      <SDLCheck>true</SDLCheck>
+      <SDLCheck>false</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>C:\DxLib_VC\プロジェクトに追加すべきファイル_VC用;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>C:\DxLib_VC\プロジェクトに追加すべきファイル_VC用;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -140,14 +143,25 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="ending.cpp" />
+    <ClCompile Include="board.cpp" />
+    <ClCompile Include="field.cpp" />
+    <ClCompile Include="frame.cpp" />
     <ClCompile Include="game.cpp" />
-    <ClCompile Include="tetris_rotate.cpp" />
+    <ClCompile Include="kyeboard.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="mino.cpp" />
+    <ClCompile Include="progress.cpp" />
     <ClCompile Include="title.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ending.h" />
+    <ClInclude Include="board.h" />
+    <ClInclude Include="Common.h" />
+    <ClInclude Include="field.h" />
+    <ClInclude Include="frame.h" />
     <ClInclude Include="game.h" />
+    <ClInclude Include="keyboard.h" />
+    <ClInclude Include="mino.h" />
+    <ClInclude Include="progress.h" />
     <ClInclude Include="title.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

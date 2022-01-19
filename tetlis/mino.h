@@ -1,33 +1,30 @@
 #pragma once
-
-#ifndef __GAME_H__ // インクルードガード
-#define __GAME_H__
+#ifndef __MINO_H__ // インクルードガード
+#define __MINO_H__
 
 
 //*****************************************************************************
 //  Include
 //*****************************************************************************
-#include "mino.h"
-#include "field.h"
 #include "board.h"
 
 
 //*****************************************************************************
 //  Class
 //*****************************************************************************
-class Game
+class Mino
 {
 private:
-    Mino  mino_;  // テトリミノクラス
-    Field field_; // フィールドクラス
-    Board board_; // 盤面クラス
+    int x_, y_;        // テトリミノの添え字([ y ][ x ])
+    int texture_;      // グラフィックハンドル
+    int fall_counter_; // 落下カウンター
 
 public:
-    Game();        // コンストラクタ
-    ~Game();       // デストラクタ
+    Mino();        // コンストラクタ
+    ~Mino();       // デストラクタ
 
     bool init();    // 初期化
-    bool update();  // 更新
+    bool update( Board* pBoard );  // 更新
     void draw();    // 描画
     void destroy(); // 破棄
 };
